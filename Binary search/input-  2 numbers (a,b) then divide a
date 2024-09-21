@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int DivideUsingBinarySearch(int divisor, int divident){
+  int start = 0;
+  int end = divident;
+  int mid = start + (end - start)/2;
+  int ans = -1;
+  while(start <= end)
+  {
+    if(mid*divisor == divident){
+      return mid;
+    }
+    else if(mid*divisor < divident){
+      ans = mid;
+      start = mid + 1;
+    }
+    else{
+      end = mid - 1;
+    }
+    mid = start + (end - start)/2;
+  }
+  return ans;
+}
+int main() {
+  int divident = 29;
+  int divisor = 7;
+  cout<<DivideUsingBinarySearch(divisor,divident);
+  return 0;
+}
