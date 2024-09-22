@@ -1,0 +1,45 @@
+// Brute Approach
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n = height.size();
+        int maxwater = 0;
+        int ht;
+        int width;
+        int area;
+        for(int i = 0;i<n;i++){
+            for(int j = i+1;j<n;j++)
+            {
+                width = j-i;
+                ht = min(height[i],height[j]);
+                area = width * ht;
+                maxwater = max(maxwater,area);
+            }
+        }
+        return maxwater;
+    }
+};
+
+// by two pointer approach
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n = height.size();
+        int maxwater = 0;
+        int ht;
+        int width;
+        int area;
+        int left = 0;
+        int right = n-1;
+        while(left < right){
+            width = right - left;
+            ht = min(height[left],height[right]);
+            area = width * ht;
+            maxwater = max(area,maxwater);
+            height[left]<height[right] ? left++:right--;
+        }
+        return maxwater;
+    }
+};
