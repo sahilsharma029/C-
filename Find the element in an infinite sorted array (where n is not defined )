@@ -1,0 +1,19 @@
+Brute force approach lga sakte hai
+While(1)
+{
+If(arr[i] > target){
+Break;
+}
+Else if(arr[i] == target){
+Return I;
+}
+}
+
+Optimal approach kya hai
+
+Int  I = 0,j=1;
+While(arr[j] < target){
+I = j;
+J = j*2;
+}
+Return binarysearch(arr,I,j);
