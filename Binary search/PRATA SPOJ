@@ -1,0 +1,69 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+bool ispossiblesoln(vector<int> ranks, int np, int mid)
+{
+  int currp = 0;
+  for(int i = 0;i<ranks.size();i++)
+  {
+    int r = ranks[i], j = 1;
+    int timetaken = 0;
+
+    while(true)
+    {
+      if(timetaken + j * r <= mid)
+      {
+        currp++;
+        timetaken += j*r;
+        j++;
+      }
+      else{
+        break;
+      }
+    }
+    if(currp >= np)
+    {
+      return true;
+    }
+  }
+  return false;
+
+}
+int mintimetocompleteorder(vector<int> ranks, int np)
+{
+  int start = 0;
+  int highrank = *max_element(ranks.begin(),ranks.end());
+  int end = highrank * (np*(np+1)/2);
+  int ans = -1;
+  while(start <= end)
+  {
+    int mid = start + (end - start)/2;
+    if(ispossiblesoln(ranks, np, mid))
+    {
+      ans = mid;
+      end = mid - 1;
+    }
+    else{
+      start = mid + 1;
+    }
+  }
+  return ans;
+}
+int main() {
+  int t; cin>>t;
+  while(t--)
+  {
+    int np, nc;
+    cin>>np>>nc;
+    vector<int> ranks;
+    while(nc--)
+    {
+      int r; cin>>r;
+      ranks.push_back(r);
+
+    }
+    cout<<mintimetocompleteorder(ranks, np)<<endl;
+  }
+  return 0;
+}
