@@ -1,0 +1,20 @@
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        string temp = "";
+        int index =0;
+        while(index<s.length())
+        {
+            if(temp.length()>0 && temp[temp.length()-1] == s[index] )
+            {
+                temp.pop_back();
+            }
+            else{
+                temp.push_back(s[index]);
+            }
+            index++;
+        }
+        
+    return temp;
+    }
+};
