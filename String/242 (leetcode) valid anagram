@@ -1,0 +1,77 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        // sort(s.begin(),s.end());
+        // sort(t.begin(),t.end());
+        // if(s == t)
+        // {
+        //     return true;
+        // }
+        // return false;
+
+        // method 2
+
+        // int freqtable[256]={0};
+        // for(int i = 0; i<s.size(); i++)
+        // {
+        //     freqtable[s[i]]++;
+        // }
+        // for(int i = 0; i<t.size(); i++)
+        // {
+        //     freqtable[t[i]]--;
+        // }
+        // for(int i = 0; i<256; i++)
+        // {
+        //     if(freqtable[i] != 0)
+        //     {
+        //         return false;
+        //     }
+        // }
+        // return true;
+
+        // create mapping
+
+    //     char startS = 'a';
+    //     char mappingS[256] = {0};
+    //     for(auto ch:s){
+    //         if(mappingS[ch] == 0)
+    //         {
+    //             mappingS[ch] = startS;
+    //             startS++;
+    //         }
+    //     }
+    //     char mappingT[256] = {0};
+    //     char startT = 'a';
+    //     for(auto ch:t)
+    //     {
+    //         if(mappingT[ch] == 0)
+    //         {
+    //             mappingT[ch] = startT;
+    //             startT++;
+    //         }
+    //     }
+    //     if(mappingT != mappingS){
+    //         return false;
+    //     }
+    // return true;
+    if(s.length() != t.length())
+    {
+        return false;
+    }
+    int count[26] = {0};
+    for(auto ch:s)
+    {
+        count[ch-'a']++;
+    }
+    for(auto ch:t)
+    {
+        count[ch-'a']--;
+        if(count[ch-'a']<0)
+        {
+            return false;
+        }
+    }
+    return true;
+
+    }
+};
